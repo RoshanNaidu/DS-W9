@@ -1,8 +1,11 @@
 import pandas as pd
 
 class GroupEstimate(object):
-    def __init__(self, estimate):
+    def __init__(self, estimate='median'):
+        if estimate not in ['mean', 'median']:
+            raise ValueError("estimate must be 'mean' or 'median'")
         self.estimate = estimate
+        self.group_values = None
     
     def fit(self, X, y):
         # Combine X and y into a single DataFrame
